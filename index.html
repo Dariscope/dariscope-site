@@ -3,11 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dariscope — Conseil en actuariat, données et risque</title>
-  <meta name="description" content="Dariscope accompagne les acteurs africains de l'assurance et de la finance sur l'actuariat, la donnée et la maîtrise des risques.">
+  <title>Dariscope — Actuariat · Conseil · Formation</title>
+  <meta name="description" content="Dariscope accompagne les acteurs africains de l'assurance et de la finance : actuariat, conseil et formation au service de la maîtrise du risque.">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <h1>Dariscope</h1>
-  <p>Site en construction.</p>
+
+  <!-- ===================== HEADER (identique sur toutes les pages) ===================== -->
+  <header class="site-header">
+    <div class="conteneur">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-horizontal.png" alt="Dariscope — Actuariat, Conseil, Formation">
+      </a>
+
+      <!-- Bouton hamburger (mobile). aria-* = accessibilité pour lecteurs d'écran -->
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        ☰
+      </button>
+
+      <!-- Emplacement réservé pour le futur sélecteur FR/EN -->
+
+      <nav>
+        <ul class="nav-menu" id="menu">
+          <li><a href="index.html" class="actif">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="valeurs.html">Valeurs &amp; mission</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU DE LA PAGE ===================== -->
+  <main>
+    <section class="conteneur" style="padding-block: 4rem;">
+      <h1>Dariscope</h1>
+      <p style="color: var(--gris-texte); font-size: 1.25rem; margin-top: 1rem;">
+        Actuariat · Conseil · Formation
+      </p>
+      <p style="margin-top: 2rem;">
+        <a href="contact.html" class="bouton">Nous contacter</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER (identique sur toutes les pages) ===================== -->
+  <footer class="site-footer">
+    <div class="conteneur">
+      <div>
+        <h3>Dariscope</h3>
+        <p style="opacity:0.8; max-width: 22rem;">
+          Actuariat, conseil et formation au service de la maîtrise du risque.
+        </p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Légal</h3>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="conteneur footer-bas">
+      <p>© 2026 Dariscope. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

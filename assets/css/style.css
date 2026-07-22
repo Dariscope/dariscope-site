@@ -1,0 +1,223 @@
+/* ==========================================================================
+   1. VARIABLES — la charte Dariscope, centralisée
+   ========================================================================== */
+:root {
+  /* Couleurs (rouge de travail — à remplacer par ton rouge exact plus tard) */
+  --rouge: #C1121F;
+  --rouge-fonce: #9E0E19;   /* survol des boutons */
+  --encre: #16181D;         /* texte principal (presque noir, plus doux) */
+  --gris-texte: #555B66;    /* texte secondaire */
+  --gris-clair: #F5F6F8;    /* fonds de sections alternées */
+  --bordure: #E5E7EB;       /* lignes de séparation */
+  --blanc: #FFFFFF;
+
+  /* Typographie */
+  --police: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --fs-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --fs-h1:   clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  --fs-h2:   clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --fs-h3:   clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem);
+
+  /* Espacements (échelle cohérente) */
+  --espace-xs: 0.5rem;
+  --espace-sm: 1rem;
+  --espace-md: 1.5rem;
+  --espace-lg: 3rem;
+  --espace-xl: 5rem;
+
+  /* Divers */
+  --largeur-max: 1160px;   /* largeur maximale du contenu */
+  --rayon: 8px;            /* arrondi des boutons/cartes */
+  --transition: 200ms ease;
+}
+
+/* ==========================================================================
+   2. POLICE auto-hébergée
+   ========================================================================== */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;   /* affiche un texte de secours en attendant la police */
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../fonts/space-grotesk-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   3. RESET moderne — repartir sur une base saine
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;   /* la largeur inclut padding et bordure : plus intuitif */
+  margin: 0;
+  padding: 0;
+}
+img {
+  max-width: 100%;   /* une image ne déborde jamais de son conteneur */
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   4. BASE — corps du document
+   ========================================================================== */
+body {
+  font-family: var(--police);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--encre);
+  background: var(--blanc);
+}
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+/* Conteneur centré et respirant, réutilisé partout */
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin-inline: auto;
+  padding-inline: var(--espace-md);
+}
+
+/* Bouton réutilisable */
+.bouton {
+  display: inline-block;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-weight: 500;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--rayon);
+  transition: background var(--transition);
+}
+.bouton:hover {
+  background: var(--rouge-fonce);
+}
+
+/* ==========================================================================
+   5. HEADER + NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: sticky;   /* le header reste visible en haut au défilement */
+  top: 0;
+  z-index: 100;
+  background: var(--blanc);
+  border-bottom: 1px solid var(--bordure);
+}
+.site-header .conteneur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--espace-sm);
+}
+.logo img {
+  height: 42px;
+  width: auto;
+}
+
+/* Bouton hamburger — visible sur mobile uniquement */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: var(--encre);
+  line-height: 1;
+}
+
+/* Menu — sur mobile : caché, puis déroulé sous le header quand ouvert */
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: var(--espace-sm);
+  background: var(--blanc);
+  border-bottom: 1px solid var(--bordure);
+  padding: var(--espace-md);
+}
+.nav-menu.is-open {
+  display: flex;   /* la classe ajoutée par le JS rend le menu visible */
+}
+.nav-menu a {
+  font-weight: 500;
+  padding: 0.4rem 0;
+  transition: color var(--transition);
+}
+.nav-menu a:hover,
+.nav-menu a.actif {
+  color: var(--rouge);
+}
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--encre);
+  color: var(--blanc);
+  padding-block: var(--espace-lg);
+  margin-top: var(--espace-xl);
+}
+.site-footer .conteneur {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-lg);
+  justify-content: space-between;
+}
+.site-footer h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--espace-sm);
+}
+.site-footer a {
+  color: var(--blanc);
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+.site-footer a:hover { opacity: 1; }
+.footer-bas {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin-top: var(--espace-lg);
+  padding-top: var(--espace-md);
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   7. GRAND ÉCRAN — ajustements à partir de 768px (mobile-first)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;   /* plus de hamburger sur ordinateur */
+  }
+  .nav-menu {
+    display: flex;    /* menu horizontal, toujours visible */
+    position: static;
+    flex-direction: row;
+    gap: var(--espace-md);
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}
