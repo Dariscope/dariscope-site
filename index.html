@@ -3,69 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dariscope — Actuariat · Conseil · Formation</title>
-  <meta name="description" content="Dariscope accompagne les acteurs africains de l'assurance et de la finance : actuariat, conseil et formation au service de la maîtrise du risque.">
+  <title>Dariscope — Actuariat, conseil et formation | Abidjan &amp; Paris</title>
+  <meta name="description" content="Dariscope accompagne les entreprises dans la maîtrise de leurs risques, l'optimisation de leurs performances et la valorisation de leurs données : actuariat, data science et conseil stratégique.">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- ===================== HEADER (identique sur toutes les pages) ===================== -->
+  <!-- ═══════════════ HEADER — identique sur toutes les pages ═══════════════ -->
   <header class="site-header">
     <div class="conteneur">
       <a href="index.html" class="logo">
         <img src="assets/img/logo-horizontal.png" alt="Dariscope — Actuariat, Conseil, Formation">
       </a>
-
-      <!-- Bouton hamburger (mobile). aria-* = accessibilité pour lecteurs d'écran -->
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
-        ☰
-      </button>
-
-      <!-- Emplacement réservé pour le futur sélecteur FR/EN -->
-
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
       <nav>
         <ul class="nav-menu" id="menu">
           <li><a href="index.html" class="actif">Accueil</a></li>
           <li><a href="a-propos.html">À propos</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="valeurs.html">Valeurs &amp; mission</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="realisations.html">Recrutement</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- ===================== CONTENU DE LA PAGE ===================== -->
   <main>
-    <section class="conteneur" style="padding-block: 4rem;">
-      <h1>Dariscope</h1>
-      <p style="color: var(--gris-texte); font-size: 1.25rem; margin-top: 1rem;">
-        Actuariat · Conseil · Formation
-      </p>
-      <p style="margin-top: 2rem;">
-        <a href="contact.html" class="bouton">Nous contacter</a>
-      </p>
+
+    <!-- ═══════════════ 1. ACCROCHE ═══════════════ -->
+    <section class="hero">
+      <div class="conteneur">
+        <div class="hero-texte">
+          <span class="surtitre">Actuariat · Conseil · Formation</span>
+          <h1>Décider juste, dans un environnement incertain.</h1>
+          <p class="hero-accroche">
+            Dariscope accompagne les entreprises dans la maîtrise de leurs risques,
+            l'optimisation de leurs performances et la valorisation de leurs données,
+            grâce à l'actuariat, la data science et le conseil stratégique.
+          </p>
+          <div class="hero-actions">
+            <a href="contact.html" class="bouton">Discuter de votre projet</a>
+            <a href="expertises.html" class="bouton bouton--ligne">Nos expertises</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/img/image3.jpg" alt="Consultants Dariscope en séance de travail" width="600" height="450">
+        </div>
+      </div>
     </section>
+
+    <!-- ═══════════════ 2. CHIFFRES CLÉS ═══════════════
+         AJOUTER UN CHIFFRE : copier un bloc <div> ci-dessous.
+         ⚠ Ne publie que des chiffres exacts et vérifiables.
+    -->
+    <section class="section section--gris">
+      <div class="conteneur">
+        <div class="chiffres">
+
+          <div>
+            <div class="chiffre-valeur" data-target="50">0+</div>
+            <p class="chiffre-label">formations dispensées par an</p>
+          </div>
+
+          <div>
+            <div class="chiffre-valeur" data-target="2">0</div>
+            <p class="chiffre-label">implantations : Abidjan &amp; Paris</p>
+          </div>
+
+          <div>
+            <div class="chiffre-valeur" data-target="3">0</div>
+            <p class="chiffre-label">pôles d'expertise complémentaires</p>
+          </div>
+
+          <div>
+            <div class="chiffre-valeur">CIMA<br>&amp; S2</div>
+            <p class="chiffre-label">double culture réglementaire</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 3. EXPERTISES ═══════════════
+         AJOUTER UNE EXPERTISE : copier un bloc <article class="carte">.
+         La grille se réorganise automatiquement.
+    -->
+    <section class="section">
+      <div class="conteneur">
+        <div class="section-entete">
+          <span class="surtitre">Nos expertises</span>
+          <h2>Trois métiers, une même exigence de rigueur</h2>
+          <p class="texte-secondaire">
+            De la modélisation technique à la montée en compétence de vos équipes,
+            nous intervenons sur l'ensemble de la chaîne de valeur du risque.
+          </p>
+        </div>
+
+        <div class="grille grille--large">
+
+          <article class="carte">
+            <h3>Actuariat &amp; conseil</h3>
+            <p>
+              Régie actuarielle, conception et tarification produit, suivi de portefeuille,
+              modélisation, provisionnement et optimisation réglementaire — en environnement
+              CIMA comme en environnement Solvabilité 2 et IFRS 17.
+            </p>
+            <a href="expertises.html#actuariat" class="carte-lien">En savoir plus →</a>
+          </article>
+
+          <article class="carte">
+            <h3>Risque &amp; financement</h3>
+            <p>
+              Arbitrage entre rétention et transfert, études de faisabilité de captives,
+              analyse de sinistralité, programmes de réassurance et allocation optimale
+              du capital face à vos contraintes de solvabilité.
+            </p>
+            <a href="expertises.html#risque" class="carte-lien">En savoir plus →</a>
+          </article>
+
+          <article class="carte">
+            <h3>Data science &amp; IA</h3>
+            <p>
+              Valorisation de vos données : qualité et structuration, modèles prédictifs,
+              tableaux de bord décisionnels, automatisation des travaux récurrents et
+              intégration raisonnée de l'intelligence artificielle.
+            </p>
+            <a href="expertises.html#data" class="carte-lien">En savoir plus →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 4. NOTRE APPROCHE ═══════════════ -->
+    <section class="section section--sombre">
+      <div class="conteneur">
+        <div class="section-entete">
+          <span class="surtitre">Notre approche</span>
+          <h2>La technique ne vaut que si elle éclaire une décision</h2>
+        </div>
+        <div class="grille grille--large">
+          <p class="texte-secondaire">
+            Durcissement des marchés d'assurance, exigences prudentielles croissantes,
+            aléa climatique, transformation numérique : les organisations évoluent dans
+            un environnement dont la volatilité s'est durablement installée. Deux questions
+            reviennent alors systématiquement — comment se protéger de cette volatilité,
+            et comment continuer à croître malgré elle ?
+          </p>
+          <p class="texte-secondaire">
+            Nous y répondons par la mesure. Chaque mission produit des livrables que vos
+            équipes peuvent reprendre, expliquer et défendre devant un conseil d'administration
+            ou un régulateur. Nous ne livrons pas des modèles opaques : nous transférons la
+            compétence. C'est pourquoi la formation occupe une place centrale dans notre
+            projet d'entreprise, au même rang que le conseil.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 5. IMPLANTATIONS ═══════════════ -->
+    <section class="section">
+      <div class="conteneur">
+        <div class="section-entete">
+          <span class="surtitre">Nos implantations</span>
+          <h2>Une double culture, africaine et européenne</h2>
+        </div>
+        <div class="grille">
+
+          <div class="implantation">
+            <h3>Afrique — Abidjan, Côte d'Ivoire</h3>
+            <p class="texte-secondaire">
+              Notre ancrage historique. Une connaissance fine du marché ivoirien
+              et de la réglementation CIMA, au service des assureurs, mutuelles
+              et institutions financières de la zone.
+            </p>
+          </div>
+
+          <div class="implantation">
+            <h3>Europe — France</h3>
+            <p class="texte-secondaire">
+              Une présence au cœur des standards européens : Solvabilité 2, IFRS 17,
+              gouvernance et fonctions clés. De quoi faire circuler les meilleures
+              pratiques entre les deux marchés.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 6. TÉMOIGNAGES ═══════════════
+         AJOUTER UN TÉMOIGNAGE : copier un bloc <figure class="temoignage">.
+         ⚠ Ne publie qu'avec l'accord écrit du client.
+    -->
+    <section class="section section--gris">
+      <div class="conteneur">
+        <div class="section-entete">
+          <span class="surtitre">Ils nous font confiance</span>
+          <h2>Ce que disent nos clients</h2>
+        </div>
+        <div class="grille grille--large">
+
+          <figure class="temoignage">
+            <blockquote>
+              « [Témoignage à recueillir — remplacer ce texte par les mots exacts du client.] »
+            </blockquote>
+            Prénom N., Fonction — Organisation
+          </figure>
+
+          <figure class="temoignage">
+            <blockquote>
+              « [Témoignage à recueillir — remplacer ce texte par les mots exacts du client.] »
+            </blockquote>
+            Prénom N., Fonction — Organisation
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 7. PODCAST / YOUTUBE ═══════════════
+         ⚠ Remplace l'URL par celle de ta chaîne.
+    -->
+    <section class="section">
+      <div class="conteneur">
+        <div class="section-entete">
+          <span class="surtitre">Le podcast Dariscope</span>
+          <h2>L'actuariat expliqué, sans jargon inutile</h2>
+          <p class="texte-secondaire">
+            Chaque épisode décrypte un sujet technique — provisionnement, captives,
+            IFRS 17, IA appliquée à l'assurance — de façon accessible aux dirigeants
+            comme aux praticiens.
+          </p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=mIyqtKutdzA"
+           class="bouton bouton--ligne"
+           target="_blank" rel="noopener">
+          Voir les épisodes sur YouTube →
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 8. APPEL À L'ACTION ═══════════════ -->
+    <section class="cta">
+      <div class="conteneur">
+        <h2>Un projet, une problématique technique, un besoin de formation ?</h2>
+        <a href="contact.html" class="bouton">Nous écrire</a>
+      </div>
+    </section>
+
   </main>
 
-  <!-- ===================== FOOTER (identique sur toutes les pages) ===================== -->
+  <!-- ═══════════════ FOOTER — identique sur toutes les pages ═══════════════ -->
   <footer class="site-footer">
     <div class="conteneur">
       <div>
         <h3>Dariscope</h3>
         <p style="opacity:0.8; max-width: 22rem;">
           Actuariat, conseil et formation au service de la maîtrise du risque.
+          Abidjan · Paris.
         </p>
       </div>
       <div>
         <h3>Navigation</h3>
         <ul>
           <li><a href="a-propos.html">À propos</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
           <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Suivez-nous</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=mIyqtKutdzA" target="_blank" rel="noopener">YouTube — Podcast</a></li>
+          <li><a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
       <div>

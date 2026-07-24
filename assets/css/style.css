@@ -28,6 +28,8 @@
   /* Divers */
   --largeur-max: 1160px;   /* largeur maximale du contenu */
   --rayon: 8px;            /* arrondi des boutons/cartes */
+
+
   --transition: 200ms ease;
 }
 
@@ -130,8 +132,8 @@ h3 { font-size: var(--fs-h3); }
   padding-block: var(--espace-sm);
 }
 .logo img {
-  height: 42px;
-  width: auto;
+  height:80px;
+  width: 10;
 }
 
 /* Bouton hamburger — visible sur mobile uniquement */
@@ -220,4 +222,510 @@ h3 { font-size: var(--fs-h3); }
     border: none;
     padding: 0;
   }
+}
+
+
+
+
+/* ==========================================================================
+   8. SECTIONS — rythme vertical du site
+   ========================================================================== */
+.section { padding-block: var(--espace-xl); }
+.section--gris   { background: var(--gris-clair); }
+.section--sombre { background: var(--encre); color: var(--blanc); }
+.section--sombre .texte-secondaire { color: rgba(255,255,255,0.75); }
+
+.section-entete { max-width: 48rem; margin-bottom: var(--espace-lg); }
+.section-entete h2 { margin-bottom: var(--espace-sm); }
+
+.surtitre {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--rouge);
+  margin-bottom: var(--espace-xs);
+}
+.texte-secondaire { color: var(--gris-texte); }
+.centre { text-align: center; }
+
+/* Décalage pour que les ancres ne passent pas sous le header collant */
+[id] { scroll-margin-top: 90px; }
+
+/* ==========================================================================
+   9. GRILLE UNIVERSELLE — s'adapte au nombre d'éléments
+   ========================================================================== */
+.grille {
+  display: grid;
+  gap: var(--espace-md);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.grille--large { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+/* ==========================================================================
+   10. CARTE — brique de base réutilisable
+   ========================================================================== */
+.carte {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.carte:hover {
+  transform: translateY(-3px);
+  border-color: var(--rouge);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.carte h3 { margin-bottom: var(--espace-xs); }
+.carte p  { color: var(--gris-texte); }
+.carte-lien {
+  display: inline-block;
+  margin-top: var(--espace-sm);
+  color: var(--rouge);
+  font-weight: 500;
+}
+.carte-lien:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   11. HERO — section d'accroche
+   ========================================================================== */
+.hero { padding-block: var(--espace-xl); }
+.hero .conteneur { display: grid; gap: var(--espace-lg); align-items: center; }
+.hero h1 { margin-bottom: var(--espace-md); }
+.hero-accroche { font-size: 1.15rem; color: var(--gris-texte); max-width: 40rem; }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-sm);
+  margin-top: var(--espace-lg);
+}
+.hero-image img {
+  border-radius: var(--rayon);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+@media (min-width: 900px) {
+  .hero .conteneur { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+
+
+/* ==========================================================================
+   + animation de limage hero ci dessous apres avoir animé les chiffres clé ci dessus
+   ========================================================================== */
+
+
+.hero-image {
+  animation: apparition-hero 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-image img {
+  border-radius: var(--rayon);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+
+/* Effet au passage souris */
+.hero-image:hover img {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+
+/* Apparition professionnelle */
+@keyframes apparition-hero {
+
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.hero-image img {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ==========================================================================
+   12. BOUTON SECONDAIRE (contour)
+   ========================================================================== */
+.bouton--ligne {
+  background: transparent;
+  color: var(--rouge);
+  border: 1.5px solid var(--rouge);
+}
+.bouton--ligne:hover { background: var(--rouge); color: var(--blanc); }
+
+/* ==========================================================================
+   13. CHIFFRES CLÉS
+   ========================================================================== */
+.chiffres {
+  display: grid;
+  gap: var(--espace-md);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  text-align: center;
+}
+.chiffre-valeur {
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 700;
+  color: var(--rouge);
+  line-height: 1;
+}
+.chiffre-label { color: var(--gris-texte); margin-top: var(--espace-xs); }
+
+.chiffre-valeur{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .6s ease, transform .6s ease;
+}
+
+.chiffre-valeur.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ==========================================================================
+   14. ÉQUIPE
+   ========================================================================== */
+.membre img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  margin-bottom: var(--espace-sm);
+}
+.membre-role { color: var(--rouge); font-weight: 500; font-size: 0.95rem; }
+.membre-bio  { color: var(--gris-texte); margin-top: var(--espace-xs); }
+
+/* ==========================================================================
+   15. TÉMOIGNAGES
+   ========================================================================== */
+.temoignage {
+  background: var(--blanc);
+  border-left: 3px solid var(--rouge);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+}
+.temoignage blockquote { font-style: italic; }
+.temoignage cite {
+  display: block;
+  margin-top: var(--espace-sm);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   16. PARTENAIRES
+   ========================================================================== */
+.partenaires {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-lg);
+}
+.partenaires img {
+  height: 42px;
+  width: auto;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter var(--transition), opacity var(--transition);
+}
+.partenaires img:hover { filter: none; opacity: 1; }
+
+/* ==========================================================================
+   17. IMPLANTATIONS
+   ========================================================================== */
+.implantation { border-left: 2px solid var(--rouge); padding-left: var(--espace-md); }
+.implantation h3 { margin-bottom: var(--espace-xs); }
+
+/* ==========================================================================
+   18. BANDEAU D'APPEL À L'ACTION
+   ========================================================================== */
+.cta { background: var(--encre); color: var(--blanc); padding-block: var(--espace-lg); }
+.cta .conteneur {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-md);
+}
+.cta h2 { max-width: 34rem; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   19. EN-TÊTE DE PAGE INTÉRIEURE
+   ========================================================================== */
+.page-entete {
+  background: var(--gris-clair);
+  padding-block: var(--espace-lg);
+  border-bottom: 1px solid var(--bordure);
+}
+.page-entete h1 { margin-bottom: var(--espace-sm); }
+.page-entete p  { color: var(--gris-texte); max-width: 46rem; }
+
+/* ==========================================================================
+   20. SOMMAIRE D'ANCRES
+   ========================================================================== */
+.sommaire {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-xs);
+  margin-top: var(--espace-md);
+}
+.sommaire a {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: border-color var(--transition), color var(--transition);
+}
+.sommaire a:hover { border-color: var(--rouge); color: var(--rouge); }
+
+/* ==========================================================================
+   21. LISTE À FLÈCHES — réutilisable partout
+   ========================================================================== */
+.liste-fleches { display: grid; gap: var(--espace-xs); }
+.liste-fleches li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--gris-texte);
+}
+.liste-fleches li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--rouge);
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   22. BLOC DUO — texte + image côte à côte, réutilisable
+   ========================================================================== */
+.bloc-duo { display: grid; gap: var(--espace-lg); align-items: center; }
+.bloc-duo img {
+  width: 100%;
+  border-radius: var(--rayon);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+@media (min-width: 900px) {
+  .bloc-duo { grid-template-columns: 1fr 1fr; }
+  .bloc-duo--inverse > *:first-child { order: 2; }
+}
+
+
+
+
+/* ==========================================================================
+   23. FORMATIONS
+   ========================================================================== */
+.formation-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-xs);
+  margin-bottom: var(--espace-xs);
+}
+.badge {
+  background: var(--rouge);
+  color: var(--blanc);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+}
+.formation-duree { font-size: 0.85rem; color: var(--gris-texte); }
+.formation h3 { font-size: 1.05rem; }
+.formation p  { font-size: 0.95rem; }
+
+/* Échelle de niveaux */
+.echelle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-md);
+  margin-top: var(--espace-md);
+}
+.echelle-item { flex: 1 1 200px; border-top: 3px solid var(--rouge); padding-top: var(--espace-sm); }
+.echelle-item strong { display: block; }
+.echelle-item span { color: var(--gris-texte); font-size: 0.95rem; }
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   24. RÉVÉLATION AU DÉFILEMENT
+   Le masquage ne s'applique QUE si le JS a ajouté la classe .js
+   ========================================================================== */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: var(--delai, 0ms);
+}
+.js .reveal.est-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Respect du réglage système "réduire les animations" */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ==========================================================================
+   25. PORTRAIT & ÉQUIPE
+   ========================================================================== */
+.portrait {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--rayon);
+}
+.membre-nom { font-size: 1.05rem; margin-bottom: 0.15rem; }
+.badge--neutre {
+  background: var(--gris-clair);
+  color: var(--gris-texte);
+  border: 1px solid var(--bordure);
+}
+.section--sombre .badge--neutre {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* ==========================================================================
+   26. VALEURS NUMÉROTÉES
+   ========================================================================== */
+.valeur-num {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--rouge);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: var(--espace-xs);
+}
+
+/* ==========================================================================
+   27. JALONS (notre histoire)
+   ========================================================================== */
+.jalons { display: grid; gap: var(--espace-md); margin-top: var(--espace-md); }
+.jalon { display: grid; grid-template-columns: 5.5rem 1fr; gap: var(--espace-sm); }
+.jalon-date { color: var(--rouge); font-weight: 700; }
+.jalon p { color: var(--gris-texte); }
+
+
+
+
+/* ==========================================================================
+   28. FORMULAIRE
+   ========================================================================== */
+.formulaire { display: grid; gap: var(--espace-md); }
+
+.champs {
+  display: grid;
+  gap: var(--espace-sm);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.champ { display: grid; gap: 0.35rem; }
+.champ--large { grid-column: 1 / -1; }
+
+.champ label { font-weight: 500; font-size: 0.95rem; }
+.obligatoire { color: var(--rouge); }
+
+.champ input,
+.champ select,
+.champ textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--encre);
+  background: var(--blanc);
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: var(--rouge);
+  box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.12);
+}
+.champ textarea { min-height: 170px; resize: vertical; }
+
+button.bouton {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.mention-rgpd { font-size: 0.88rem; color: var(--gris-texte); }
+.mention-rgpd a { color: var(--rouge); text-decoration: underline; }
+
+/* Champ anti-spam : invisible à l'écran, détecté par les robots */
+.pot-de-miel { position: absolute; left: -9999px; }
+
+/* ==========================================================================
+   29. CONTACT — mise en page et coordonnées
+   ========================================================================== */
+.contact-grille { display: grid; gap: var(--espace-xl); align-items: start; }
+@media (min-width: 900px) {
+  .contact-grille { grid-template-columns: 1.6fr 1fr; }
+}
+
+.coord-bloc { margin-bottom: var(--espace-md); }
+.coord-bloc strong { display: block; margin-bottom: 0.15rem; }
+.coord-bloc p, .coord-bloc a { color: var(--gris-texte); }
+.coord-bloc a:hover { color: var(--rouge); }
+
+.bouton--whatsapp { background: #25D366; color: #FFFFFF; }
+.bouton--whatsapp:hover { background: #1DA851; }
+
+/* ==========================================================================
+   30. PAGE DE CONFIRMATION
+   ========================================================================== */
+.confirmation { text-align: center; max-width: 34rem; margin-inline: auto; }
+.confirmation-icone {
+  font-size: 3rem;
+  color: var(--rouge);
+  line-height: 1;
+  margin-bottom: var(--espace-sm);
 }

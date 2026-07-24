@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Parlons de votre projet | Dariscope</title>
+  <meta name="description" content="Contactez Dariscope pour un projet actuariel, une mission de conseil ou une formation. Nos équipes à Abidjan et à Paris vous répondent sous 48 heures.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER — "actif" sur Contact ═══════════════ -->
+  <header class="site-header">
+    <div class="conteneur">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-horizontal.png" alt="Dariscope — Actuariat, Conseil, Formation">
+      </a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav>
+        <ul class="nav-menu" id="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="contact.html" class="actif">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════ EN-TÊTE DE PAGE ═══════════════ -->
+    <section class="page-entete">
+      <div class="conteneur">
+        <span class="surtitre">Contact</span>
+        <h1>Parlons de votre projet</h1>
+        <p>
+          Une mission actuarielle, une problématique de solvabilité, un besoin de
+          formation ou simplement une question : décrivez-nous votre contexte, nous
+          revenons vers vous sous 48 heures ouvrées.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="conteneur contact-grille">
+
+        <!-- ═══════════════ FORMULAIRE ═══════════════
+             ⚠ L'attribut name="contact" identifie le formulaire chez Netlify.
+             Ne le renomme pas sans changer aussi le champ caché form-name.
+        -->
+        <div>
+          <form name="contact"
+                method="POST"
+                action="/merci.html"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                class="formulaire reveal">
+
+            <!-- Requis par Netlify pour identifier le formulaire -->
+            <input type="hidden" name="form-name" value="contact">
+
+            <!-- Piège à robots : invisible pour un humain -->
+            <p class="pot-de-miel">
+              <label>Ne remplissez pas ce champ : <input name="bot-field"></label>
+            </p>
+
+            <div class="champs">
+
+              <div class="champ">
+                <label for="prenom">Prénom <span class="obligatoire">*</span></label>
+                <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+              </div>
+
+              <div class="champ">
+                <label for="nom">Nom <span class="obligatoire">*</span></label>
+                <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+              </div>
+
+              <div class="champ">
+                <label for="entreprise">Entreprise / organisation</label>
+                <input type="text" id="entreprise" name="entreprise" autocomplete="organization">
+              </div>
+
+              <div class="champ">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" autocomplete="tel" placeholder="+225 ...">
+              </div>
+
+              <div class="champ">
+                <label for="email">Adresse e-mail <span class="obligatoire">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+
+              <div class="champ">
+                <label for="ville">Ville</label>
+                <input type="text" id="ville" name="ville" autocomplete="address-level2">
+              </div>
+
+              <div class="champ">
+                <label for="pays">Pays</label>
+                <input type="text" id="pays" name="pays" autocomplete="country-name">
+              </div>
+
+              <div class="champ">
+                <label for="objet">Objet de votre demande <span class="obligatoire">*</span></label>
+                <select id="objet" name="objet" required>
+                  <option value="">— Sélectionnez —</option>
+                  <option>Conseil actuariel</option>
+                  <option>Risque &amp; financement du risque</option>
+                  <option>Data science &amp; IA</option>
+                  <option>Formation</option>
+                  <option>Partenariat</option>
+                  <option>Candidature / recrutement</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+
+              <div class="champ champ--large">
+                <label for="message">Votre message <span class="obligatoire">*</span></label>
+                <textarea id="message" name="message"
+                          placeholder="Décrivez votre contexte, vos enjeux et l'échéance envisagée."
+                          required></textarea>
+              </div>
+
+            </div>
+
+            <button type="submit" class="bouton">Envoyer ma demande</button>
+
+            <p class="mention-rgpd">
+              Pour traiter votre demande, nous avons l'obligation de traiter vos données
+              personnelles. Plus d'informations sur le traitement de vos données
+              personnelles, cliquer <a href="confidentialite.html">ici</a>.
+            </p>
+
+          </form>
+        </div>
+
+        <!-- ═══════════════ COORDONNÉES ═══════════════
+             ⚠ Remplace tous les [placeholders] par tes vraies coordonnées.
+        -->
+        <aside class="reveal" style="--delai: 120ms">
+
+          <div class="coord-bloc">
+            <span class="surtitre">Réponse immédiate</span>
+            <p style="margin-bottom: var(--espace-sm);">
+              Pour une question rapide, écrivez-nous directement sur WhatsApp.
+            </p>
+            <a href="https://wa.me/225XXXXXXXXXX?text=Bonjour%20Dariscope%2C%20je%20souhaite%20échanger%20à%20propos%20de%20"
+               class="bouton bouton--whatsapp"
+               target="_blank" rel="noopener">
+              Écrire sur WhatsApp
+            </a>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--bordure); margin-block: var(--espace-lg);">
+
+          <div class="coord-bloc">
+            <strong>E-mail</strong>
+            <a href="mailto:contact@dariscope.com">contact@dariscope.com</a>
+          </div>
+
+          <div class="coord-bloc">
+            <strong>Abidjan — Côte d'Ivoire</strong>
+            <p>[Adresse]<br>[Quartier, commune]</p>
+            <a href="tel:+225XXXXXXXXXX">+225 XX XX XX XX XX</a>
+          </div>
+
+          <div class="coord-bloc">
+            <strong>Paris — France</strong>
+            <p>[Adresse]<br>[Code postal, ville]</p>
+            <a href="tel:+33XXXXXXXXX">+33 X XX XX XX XX</a>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--bordure); margin-block: var(--espace-lg);">
+
+          <div class="coord-bloc">
+            <strong>Nous suivre</strong>
+            <p>
+              <a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a><br>
+              <a href="https://www.youtube.com/@dariscope" target="_blank" rel="noopener">YouTube — le podcast</a>
+            </p>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER — copie conforme ═══════════════ -->
+  <footer class="site-footer">
+    <div class="conteneur">
+      <div>
+        <h3>Dariscope</h3>
+        <p style="opacity:0.8; max-width: 22rem;">
+          Actuariat, conseil et formation au service de la maîtrise du risque.
+          Abidjan · Paris.
+        </p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Suivez-nous</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/@dariscope" target="_blank" rel="noopener">YouTube — Podcast</a></li>
+          <li><a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Légal</h3>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="conteneur footer-bas">
+      <p>© 2026 Dariscope. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
