@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postuler — Déposez votre candidature | Dariscope</title>
+  <meta name="description" content="Déposez votre candidature chez Dariscope : CV en pièce jointe, poste visé et message. Actuariat, data science et formation, à Abidjan et à Paris.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <!-- Open Graph : aperçu au partage (WhatsApp, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dariscope">
+  <meta property="og:title" content="Postuler — Déposez votre candidature | Dariscope">
+  <meta property="og:description" content="Déposez votre candidature chez Dariscope : CV en pièce jointe, poste visé et message. Actuariat, data science et formation, à Abidjan et à Paris.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:url" content="https://www.dariscope.com/postuler.html">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER (identique sur toutes les pages) ═══════════════ -->
+  <header class="site-header">
+    <div class="conteneur">
+      <a href="index.html" class="logo">
+        <img src="assets/img/logo-horizontal.png" alt="Dariscope — Actuariat, Conseil, Formation">
+      </a>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav>
+        <ul class="nav-menu" id="menu">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="ressources.html">Ressources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-entete">
+      <div class="conteneur">
+        <span class="surtitre">Candidature</span>
+        <h1>Déposez votre candidature</h1>
+        <p>
+          Envoyez-nous votre CV et quelques lignes sur ce qui vous motive. Nous
+          répondons à toutes les candidatures, y compris spontanées, sous une semaine.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="conteneur" style="max-width: 720px;">
+
+        <!-- ⚠ data-netlify + enctype pour l'envoi de fichiers -->
+        <form name="candidature"
+              method="POST"
+              action="/candidature-recue.html"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              enctype="multipart/form-data"
+              class="formulaire reveal">
+
+          <input type="hidden" name="form-name" value="candidature">
+          <p class="pot-de-miel">
+            <label>Ne remplissez pas ce champ : <input name="bot-field"></label>
+          </p>
+
+          <div class="champs">
+
+            <div class="champ">
+              <label for="c-prenom">Prénom <span class="obligatoire">*</span></label>
+              <input type="text" id="c-prenom" name="prenom" autocomplete="given-name" required>
+            </div>
+
+            <div class="champ">
+              <label for="c-nom">Nom <span class="obligatoire">*</span></label>
+              <input type="text" id="c-nom" name="nom" autocomplete="family-name" required>
+            </div>
+
+            <div class="champ">
+              <label for="c-email">Adresse e-mail <span class="obligatoire">*</span></label>
+              <input type="email" id="c-email" name="email" autocomplete="email" required>
+            </div>
+
+            <div class="champ">
+              <label for="c-tel">Téléphone</label>
+              <input type="tel" id="c-tel" name="telephone" autocomplete="tel" placeholder="+225 ...">
+            </div>
+
+            <div class="champ">
+              <label for="c-poste">Poste visé <span class="obligatoire">*</span></label>
+              <select id="c-poste" name="poste" required>
+                <option value="">— Sélectionnez —</option>
+                <option>Actuariat / conseil</option>
+                <option>Data science / IA</option>
+                <option>Formation</option>
+                <option>Fonctions support (RH, administration, finance)</option>
+                <option>Stage / alternance</option>
+                <option>Candidature spontanée</option>
+              </select>
+            </div>
+
+            <div class="champ">
+              <label for="c-lieu">Localisation souhaitée</label>
+              <select id="c-lieu" name="localisation">
+                <option value="">— Indifférent —</option>
+                <option>Abidjan</option>
+                <option>Paris</option>
+                <option>À distance</option>
+              </select>
+            </div>
+
+            <div class="champ champ--large">
+              <label for="c-cv">Votre CV (PDF ou Word) <span class="obligatoire">*</span></label>
+              <div class="champ-fichier">
+                <input type="file" id="c-cv" name="cv" accept=".pdf,.doc,.docx" required>
+                <small>Formats acceptés : PDF, DOC, DOCX — 8 Mo maximum.</small>
+              </div>
+            </div>
+
+            <div class="champ champ--large">
+              <label for="c-message">Votre message <span class="obligatoire">*</span></label>
+              <textarea id="c-message" name="message"
+                        placeholder="Quelques lignes sur votre parcours et ce qui vous intéresse chez Dariscope."
+                        required></textarea>
+            </div>
+
+          </div>
+
+          <button type="submit" class="bouton">Envoyer ma candidature</button>
+
+          <p class="mention-rgpd">
+            Les informations et documents transmis sont utilisés uniquement pour
+            l'étude de votre candidature. Pour en savoir plus sur le traitement de vos
+            données, cliquer <a href="confidentialite.html">ici</a>.
+          </p>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+    <!-- ═══════════════ FOOTER (identique sur toutes les pages) ═══════════════ -->
+  <footer class="site-footer">
+    <div class="conteneur">
+      <div>
+        <h3>Dariscope</h3>
+        <p style="opacity:0.8; max-width: 22rem;">
+          Actuariat, conseil et formation au service de la maîtrise du risque.
+          Abidjan · Paris.
+        </p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="expertises.html">Expertises</a></li>
+          <li><a href="formations.html">Formations</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="ressources.html">Ressources &amp; événements</a></li>
+          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Suivez-nous</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/channel/UCs9xaDjZs5DNwy4tMW8qfAw" target="_blank" rel="noopener">YouTube — Podcast</a></li>
+          <li><a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Légal</h3>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="conteneur footer-bas">
+      <p>© 2026 Dariscope. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ BULLE PRISE DE RENDEZ-VOUS ═══════════════
+       ⚠ Remplace l'URL par ton vrai lien Calendly.
+  -->
+  <a href="https://calendly.com/dariscope-group/"
+     class="rdv-bulle"
+     target="_blank" rel="noopener"
+     aria-label="Prendre rendez-vous avec Dariscope">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <span class="rdv-texte">Prendre rendez-vous</span>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

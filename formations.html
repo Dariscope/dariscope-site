@@ -6,10 +6,21 @@
   <title>Formations en assurance, actuariat et data | Dariscope</title>
   <meta name="description" content="Catalogue de formations Dariscope : assurance, Solvabilité 2, techniques actuarielles, data et IA, pilotage financier et soft skills. Inter, intra ou sur-mesure, à Abidjan et à Paris.">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <!-- Open Graph : aperçu au partage (WhatsApp, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dariscope">
+  <meta property="og:title" content="Formations en assurance, actuariat et data | Dariscope">
+  <meta property="og:description" content="Catalogue de formations Dariscope : assurance, Solvabilité 2, techniques actuarielles, data et IA, pilotage financier et soft skills. Inter, intra ou sur-mesure, à Abidjan et à Paris.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:url" content="https://www.dariscope.com/formations.html">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
-  <!-- ═══════════════ HEADER — "actif" sur Formations ═══════════════ -->
+    <!-- ═══════════════ HEADER (identique sur toutes les pages) ═══════════════ -->
   <header class="site-header">
     <div class="conteneur">
       <a href="index.html" class="logo">
@@ -23,7 +34,7 @@
           <li><a href="expertises.html">Expertises</a></li>
           <li><a href="formations.html" class="actif">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="ressources.html">Ressources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -33,7 +44,7 @@
   <main>
 
     <!-- ═══════════════ EN-TÊTE DE PAGE ═══════════════ -->
-    <section class="page-entete">
+    <section class="page-entete page-entete--motif">
       <div class="conteneur">
         <span class="surtitre">Formations</span>
         <h1>La pédagogie au cœur de notre métier</h1>
@@ -55,7 +66,7 @@
     </section>
 
     <!-- ═══════════════ FORMATS ═══════════════ -->
-    <section class="section">
+    <section class="section fond-image" style="--img-fond: url('assets/img/image14.jpg');">
       <div class="conteneur">
         <div class="section-entete">
           <span class="surtitre">Nos formats</span>
@@ -178,6 +189,13 @@
             <div class="formation-meta"><span class="badge">Niveau 3</span><span class="formation-duree">1 jour</span></div>
             <h3>Solvabilité 2 : vue d'ensemble</h3>
             <p>Architecture des trois piliers et logique économique de la réforme, sans prérequis actuariel.</p>
+            <a href="assets/pdf/programme-solva2-2026.pdf" class="formation-pdf" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                Fiche descriptive (PDF)
+            </a>
           </article>
 
           <article class="carte formation">
@@ -443,7 +461,7 @@
 
   </main>
 
-  <!-- ═══════════════ FOOTER — copie conforme ═══════════════ -->
+    <!-- ═══════════════ FOOTER (identique sur toutes les pages) ═══════════════ -->
   <footer class="site-footer">
     <div class="conteneur">
       <div>
@@ -460,6 +478,7 @@
           <li><a href="expertises.html">Expertises</a></li>
           <li><a href="formations.html">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="ressources.html">Ressources &amp; événements</a></li>
           <li><a href="recrutement.html">Recrutement</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -467,7 +486,7 @@
       <div>
         <h3>Suivez-nous</h3>
         <ul>
-          <li><a href="https://www.youtube.com/@dariscope" target="_blank" rel="noopener">YouTube — Podcast</a></li>
+          <li><a href="https://www.youtube.com/channel/UCs9xaDjZs5DNwy4tMW8qfAw" target="_blank" rel="noopener">YouTube — Podcast</a></li>
           <li><a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
@@ -484,6 +503,26 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+<!-- ═══════════════ BULLE PRISE DE RENDEZ-VOUS ═══════════════
+       ⚠ Remplace l'URL par ton vrai lien Calendly.
+  -->
+  <!-- ═══════════════ BULLE PRISE DE RENDEZ-VOUS ═══════════════
+       ⚠ Remplace l'URL par ton vrai lien Calendly.
+  -->
+  <a href="https://calendly.com/dariscope-group/"
+     class="rdv-bulle"
+     target="_blank" rel="noopener"
+     aria-label="Prendre rendez-vous avec Dariscope">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <span class="rdv-texte">Prendre rendez-vous</span>
+  </a>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>

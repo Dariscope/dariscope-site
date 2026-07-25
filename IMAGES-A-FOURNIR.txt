@@ -1,0 +1,34 @@
+IMAGES À DÉPOSER DANS assets/img/
+==================================
+Le site référence les fichiers ci-dessous. Dépose-les avec CES NOMS EXACTS
+(minuscules, sans espace ni accent). Tant qu'une image manque, une icône
+"cassée" apparaît à sa place.
+
+LOGO (indispensable)
+  logo-horizontal.png    → ton logo, fond transparent, ~ hauteur 64px à l'écran
+
+PHOTOS DE CONTENU
+  image3.jpg   → hero de l'accueil (consultants au travail)     600x450 conseillé
+  image4.jpg   → page À propos, section "Notre histoire"        600x450
+  image5.jpg   → page Expertises, passerelle formations         600x450
+  image6.jpg   → (réserve, fond de section si tu l'actives)
+  image7.jpg   → page Formations, section "Plan de formation"   600x450
+  image8.jpg   → page Formations, section "Formats" (si activée)
+
+FONDATEUR
+  ceo-dariscope-5.jpg    → portrait du fondateur    380x475 conseillé (format 4:5)
+
+ÉQUIPE (supprime les blocs des collaborateurs que tu n'as pas)
+  collaborateur1.jpg  →  collaborateur6.jpg         400x500 (format 4:5)
+
+PARTENAIRES (page À propos — ou supprime la section)
+  partenaire1.png, partenaire2.png, partenaire3.png   logos, hauteur 42px
+
+DÉJÀ FOURNIS (générés — à remplacer par tes versions quand tu veux)
+  favicon.png    → petite icône dans l'onglet du navigateur (512x512)
+  og-image.jpg   → aperçu au partage sur WhatsApp/LinkedIn (1200x630)
+
+POLICE (optionnel mais recommandé — voir étape 2A)
+  assets/fonts/space-grotesk-400.woff2
+  assets/fonts/space-grotesk-500.woff2
+  assets/fonts/space-grotesk-700.woff2

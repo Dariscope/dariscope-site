@@ -1,24 +1,40 @@
 /* ==========================================================================
+   DARISCOPE — Feuille de style
+   --------------------------------------------------------------------------
+   Sommaire :
+    1. Variables (charte)          8. Sections          15. Témoignages
+    2. Police                      9. Grille            16. Partenaires
+    3. Reset                      10. Carte             17. Implantations
+    4. Base + conteneur           11. Hero              18. CTA
+    5. Header + navigation        12. Boutons          19-21. Pages intérieures
+    6. Footer                     13. Chiffres clés     22-39. Composants
+    7. Media queries header       14. Équipe            40. Effets « wow »
+   ========================================================================== */
+
+/* ==========================================================================
    1. VARIABLES — la charte Dariscope, centralisée
    ========================================================================== */
 :root {
   /* Couleurs (rouge de travail — à remplacer par ton rouge exact plus tard) */
   --rouge: #C1121F;
-  --rouge-fonce: #9E0E19;   /* survol des boutons */
-  --encre: #16181D;         /* texte principal (presque noir, plus doux) */
-  --gris-texte: #555B66;    /* texte secondaire */
-  --gris-clair: #F5F6F8;    /* fonds de sections alternées */
-  --bordure: #E5E7EB;       /* lignes de séparation */
+  --rouge-fonce: #9E0E19;
+  --rouge-clair: #E23744;
+  --encre: #16181D;
+  --encre-clair: #24272E;
+  --gris-texte: #555B66;
+  --gris-clair: #F5F6F8;
+  --gris-clair-2: #ECEEF2;
+  --bordure: #E5E7EB;
   --blanc: #FFFFFF;
 
   /* Typographie */
-  --police: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --police: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --fs-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
   --fs-h1:   clamp(2rem, 1.4rem + 3vw, 3.5rem);
   --fs-h2:   clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
   --fs-h3:   clamp(1.2rem, 1.1rem + 0.6vw, 1.5rem);
 
-  /* Espacements (échelle cohérente) */
+  /* Espacements */
   --espace-xs: 0.5rem;
   --espace-sm: 1rem;
   --espace-md: 1.5rem;
@@ -26,11 +42,18 @@
   --espace-xl: 5rem;
 
   /* Divers */
-  --largeur-max: 1160px;   /* largeur maximale du contenu */
-  --rayon: 8px;            /* arrondi des boutons/cartes */
+  --largeur-max: 1160px;
+  --rayon: 10px;
+  --rayon-lg: 16px;
+  --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-lente: 500ms cubic-bezier(0.22, 1, 0.36, 1);
 
-
-  --transition: 200ms ease;
+  /* Ombres — une échelle cohérente, clé d'un rendu pro */
+  --ombre-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --ombre-sm: 0 4px 12px rgba(16, 24, 40, 0.06);
+  --ombre-md: 0 12px 28px rgba(16, 24, 40, 0.08);
+  --ombre-lg: 0 24px 60px rgba(16, 24, 40, 0.12);
+  --ombre-rouge: 0 12px 28px rgba(193, 18, 31, 0.24);
 }
 
 /* ==========================================================================
@@ -40,7 +63,7 @@
   font-family: "Space Grotesk";
   src: url("../fonts/space-grotesk-400.woff2") format("woff2");
   font-weight: 400;
-  font-display: swap;   /* affiche un texte de secours en attendant la police */
+  font-display: swap;
 }
 @font-face {
   font-family: "Space Grotesk";
@@ -56,15 +79,15 @@
 }
 
 /* ==========================================================================
-   3. RESET moderne — repartir sur une base saine
+   3. RESET moderne
    ========================================================================== */
 *, *::before, *::after {
-  box-sizing: border-box;   /* la largeur inclut padding et bordure : plus intuitif */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 img {
-  max-width: 100%;   /* une image ne déborde jamais de son conteneur */
+  max-width: 100%;
   display: block;
 }
 a {
@@ -73,6 +96,15 @@ a {
 }
 ul {
   list-style: none;
+}
+:focus-visible {
+  outline: 2px solid var(--rouge);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 /* ==========================================================================
@@ -84,16 +116,19 @@ body {
   line-height: 1.6;
   color: var(--encre);
   background: var(--blanc);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 h1, h2, h3 {
-  line-height: 1.2;
+  line-height: 1.15;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 
-/* Conteneur centré et respirant, réutilisé partout */
 .conteneur {
   width: 100%;
   max-width: var(--largeur-max);
@@ -101,42 +136,67 @@ h3 { font-size: var(--fs-h3); }
   padding-inline: var(--espace-md);
 }
 
-/* Bouton réutilisable */
+/* Bouton réutilisable — avec effet de brillance au survol */
 .bouton {
+  position: relative;
   display: inline-block;
   background: var(--rouge);
   color: var(--blanc);
   font-weight: 500;
-  padding: 0.8rem 1.6rem;
+  padding: 0.85rem 1.7rem;
   border-radius: var(--rayon);
-  transition: background var(--transition);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  overflow: hidden;
+  isolation: isolate;
+}
+.bouton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms ease;
+  z-index: -1;
 }
 .bouton:hover {
   background: var(--rouge-fonce);
+  transform: translateY(-2px);
+  box-shadow: var(--ombre-rouge);
 }
+.bouton:hover::after { transform: translateX(120%); }
+.bouton:active { transform: translateY(0); }
 
 /* ==========================================================================
    5. HEADER + NAVIGATION
    ========================================================================== */
 .site-header {
-  position: sticky;   /* le header reste visible en haut au défilement */
+  position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--blanc);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--bordure);
+  transition: box-shadow var(--transition), background var(--transition);
+}
+/* Ombre douce qui apparaît quand on défile (classe posée par le JS) */
+.site-header.est-defile {
+  box-shadow: var(--ombre-sm);
+  background: rgba(255, 255, 255, 0.95);
 }
 .site-header .conteneur {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--espace-sm);
+  padding-block: 0.6rem;
 }
 .logo img {
-  height:80px;
-  width: 10;
+  height: 64px;
+  width: auto;               /* CORRIGÉ : plus de déformation */
+  transition: transform var(--transition);
 }
+.logo:hover img { transform: scale(1.04); }
 
-/* Bouton hamburger — visible sur mobile uniquement */
 .menu-toggle {
   background: none;
   border: none;
@@ -144,9 +204,12 @@ h3 { font-size: var(--fs-h3); }
   font-size: 1.6rem;
   color: var(--encre);
   line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--rayon);
+  transition: background var(--transition);
 }
+.menu-toggle:hover { background: var(--gris-clair); }
 
-/* Menu — sur mobile : caché, puis déroulé sous le header quand ouvert */
 .nav-menu {
   display: none;
   position: absolute;
@@ -157,20 +220,33 @@ h3 { font-size: var(--fs-h3); }
   gap: var(--espace-sm);
   background: var(--blanc);
   border-bottom: 1px solid var(--bordure);
+  box-shadow: var(--ombre-md);
   padding: var(--espace-md);
 }
-.nav-menu.is-open {
-  display: flex;   /* la classe ajoutée par le JS rend le menu visible */
-}
+.nav-menu.is-open { display: flex; }
 .nav-menu a {
+  position: relative;
   font-weight: 500;
   padding: 0.4rem 0;
   transition: color var(--transition);
 }
-.nav-menu a:hover,
-.nav-menu a.actif {
-  color: var(--rouge);
+/* Soulignement animé qui grandit depuis la gauche */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--rouge);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
 }
+.nav-menu a:hover,
+.nav-menu a.actif { color: var(--rouge); }
+.nav-menu a:hover::after,
+.nav-menu a.actif::after { transform: scaleX(1); }
 
 /* ==========================================================================
    6. FOOTER
@@ -193,10 +269,14 @@ h3 { font-size: var(--fs-h3); }
 }
 .site-footer a {
   color: var(--blanc);
-  opacity: 0.85;
-  transition: opacity var(--transition);
+  opacity: 0.82;
+  transition: opacity var(--transition), padding-left var(--transition), color var(--transition);
 }
-.site-footer a:hover { opacity: 1; }
+.site-footer li a:hover {
+  opacity: 1;
+  color: var(--rouge-clair);
+  padding-left: 4px;
+}
 .footer-bas {
   border-top: 1px solid rgba(255,255,255,0.15);
   margin-top: var(--espace-lg);
@@ -207,28 +287,24 @@ h3 { font-size: var(--fs-h3); }
 }
 
 /* ==========================================================================
-   7. GRAND ÉCRAN — ajustements à partir de 768px (mobile-first)
+   7. GRAND ÉCRAN — header à partir de 768px
    ========================================================================== */
 @media (min-width: 768px) {
-  .menu-toggle {
-    display: none;   /* plus de hamburger sur ordinateur */
-  }
+  .menu-toggle { display: none; }
   .nav-menu {
-    display: flex;    /* menu horizontal, toujours visible */
+    display: flex;
     position: static;
     flex-direction: row;
     gap: var(--espace-md);
     background: none;
     border: none;
+    box-shadow: none;
     padding: 0;
   }
 }
 
-
-
-
 /* ==========================================================================
-   8. SECTIONS — rythme vertical du site
+   8. SECTIONS — rythme vertical
    ========================================================================== */
 .section { padding-block: var(--espace-xl); }
 .section--gris   { background: var(--gris-clair); }
@@ -239,7 +315,9 @@ h3 { font-size: var(--fs-h3); }
 .section-entete h2 { margin-bottom: var(--espace-sm); }
 
 .surtitre {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.8rem;
@@ -247,14 +325,23 @@ h3 { font-size: var(--fs-h3); }
   color: var(--rouge);
   margin-bottom: var(--espace-xs);
 }
+/* Petit trait rouge devant le surtitre — signature discrète */
+.surtitre::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  background: var(--rouge);
+  display: inline-block;
+}
 .texte-secondaire { color: var(--gris-texte); }
 .centre { text-align: center; }
+.centre.section-entete { margin-inline: auto; }
+.centre .surtitre { justify-content: center; }
 
-/* Décalage pour que les ancres ne passent pas sous le header collant */
 [id] { scroll-margin-top: 90px; }
 
 /* ==========================================================================
-   9. GRILLE UNIVERSELLE — s'adapte au nombre d'éléments
+   9. GRILLE UNIVERSELLE
    ========================================================================== */
 .grille {
   display: grid;
@@ -267,32 +354,73 @@ h3 { font-size: var(--fs-h3); }
    10. CARTE — brique de base réutilisable
    ========================================================================== */
 .carte {
+  position: relative;
   background: var(--blanc);
   border: 1px solid var(--bordure);
   border-radius: var(--rayon);
   padding: var(--espace-md);
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  overflow: hidden;
+}
+/* Liseré rouge qui se révèle en haut de la carte au survol */
+.carte::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rouge), var(--rouge-clair));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
 }
 .carte:hover {
-  transform: translateY(-3px);
-  border-color: var(--rouge);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow: var(--ombre-md);
 }
+.carte:hover::before { transform: scaleX(1); }
 .carte h3 { margin-bottom: var(--espace-xs); }
 .carte p  { color: var(--gris-texte); }
 .carte-lien {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   margin-top: var(--espace-sm);
   color: var(--rouge);
   font-weight: 500;
+  transition: gap var(--transition);
 }
-.carte-lien:hover { text-decoration: underline; }
+.carte-lien:hover { gap: 0.6rem; text-decoration: underline; }
 
 /* ==========================================================================
    11. HERO — section d'accroche
    ========================================================================== */
-.hero { padding-block: var(--espace-xl); }
-.hero .conteneur { display: grid; gap: var(--espace-lg); align-items: center; }
+.hero {
+  padding-block: var(--espace-xl);
+  position: relative;
+  overflow: hidden;
+}
+/* Dégradé décoratif très doux en fond de hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(193,18,31,0.06) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .conteneur {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--espace-lg);
+  align-items: center;
+}
 .hero h1 { margin-bottom: var(--espace-md); }
 .hero-accroche { font-size: 1.15rem; color: var(--gris-texte); max-width: 40rem; }
 .hero-actions {
@@ -301,60 +429,27 @@ h3 { font-size: var(--fs-h3); }
   gap: var(--espace-sm);
   margin-top: var(--espace-lg);
 }
+.hero-image {
+  animation: apparition-hero 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 .hero-image img {
-  border-radius: var(--rayon);
+  border-radius: var(--rayon-lg);
   aspect-ratio: 4 / 3;
   object-fit: cover;
   width: 100%;
+  box-shadow: var(--ombre-lg);
+  transition: transform var(--transition-lente), filter var(--transition-lente);
+}
+.hero-image:hover img { transform: scale(1.03); filter: brightness(1.04); }
+@keyframes apparition-hero {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 @media (min-width: 900px) {
   .hero .conteneur { grid-template-columns: 1.05fr 0.95fr; }
 }
-
-
-
-/* ==========================================================================
-   + animation de limage hero ci dessous apres avoir animé les chiffres clé ci dessus
-   ========================================================================== */
-
-
-.hero-image {
-  animation: apparition-hero 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero-image img {
-  border-radius: var(--rayon);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  width: 100%;
-  transition: transform 0.5s ease, filter 0.5s ease;
-}
-
-
-/* Effet au passage souris */
-.hero-image:hover img {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-}
-
-
-/* Apparition professionnelle */
-@keyframes apparition-hero {
-
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-.hero-image img {
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+@media (prefers-reduced-motion: reduce) {
+  .hero-image { animation: none; }
 }
 
 /* ==========================================================================
@@ -365,7 +460,16 @@ h3 { font-size: var(--fs-h3); }
   color: var(--rouge);
   border: 1.5px solid var(--rouge);
 }
+.bouton--ligne::after { display: none; }
 .bouton--ligne:hover { background: var(--rouge); color: var(--blanc); }
+/* Variante contour sur fond sombre */
+.section--sombre .bouton--ligne,
+.cta .bouton--ligne {
+  color: var(--blanc);
+  border-color: rgba(255,255,255,0.5);
+}
+.section--sombre .bouton--ligne:hover,
+.cta .bouton--ligne:hover { background: var(--blanc); color: var(--encre); border-color: var(--blanc); }
 
 /* ==========================================================================
    13. CHIFFRES CLÉS
@@ -376,24 +480,15 @@ h3 { font-size: var(--fs-h3); }
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   text-align: center;
 }
+.chiffre-bloc { padding: var(--espace-sm); }
 .chiffre-valeur {
-  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-size: clamp(2.2rem, 1.5rem + 2.5vw, 3.4rem);
   font-weight: 700;
   color: var(--rouge);
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 .chiffre-label { color: var(--gris-texte); margin-top: var(--espace-xs); }
-
-.chiffre-valeur{
-    opacity:0;
-    transform:translateY(20px);
-    transition:opacity .6s ease, transform .6s ease;
-}
-
-.chiffre-valeur.visible{
-    opacity:1;
-    transform:translateY(0);
-}
 
 /* ==========================================================================
    14. ÉQUIPE
@@ -404,7 +499,9 @@ h3 { font-size: var(--fs-h3); }
   object-fit: cover;
   border-radius: var(--rayon);
   margin-bottom: var(--espace-sm);
+  transition: transform var(--transition-lente);
 }
+.membre:hover img { transform: scale(1.02); }
 .membre-role { color: var(--rouge); font-weight: 500; font-size: 0.95rem; }
 .membre-bio  { color: var(--gris-texte); margin-top: var(--espace-xs); }
 
@@ -412,12 +509,27 @@ h3 { font-size: var(--fs-h3); }
    15. TÉMOIGNAGES
    ========================================================================== */
 .temoignage {
+  position: relative;
   background: var(--blanc);
   border-left: 3px solid var(--rouge);
   border-radius: var(--rayon);
   padding: var(--espace-md);
+  box-shadow: var(--ombre-xs);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
-.temoignage blockquote { font-style: italic; }
+.temoignage:hover { transform: translateY(-4px); box-shadow: var(--ombre-sm); }
+/* Grand guillemet décoratif */
+.temoignage::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.2rem;
+  right: 1rem;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--rouge);
+  opacity: 0.12;
+}
+.temoignage blockquote { font-style: italic; position: relative; z-index: 1; }
 .temoignage cite {
   display: block;
   margin-top: var(--espace-sm);
@@ -441,21 +553,43 @@ h3 { font-size: var(--fs-h3); }
   width: auto;
   filter: grayscale(1);
   opacity: 0.55;
-  transition: filter var(--transition), opacity var(--transition);
+  transition: filter var(--transition), opacity var(--transition), transform var(--transition);
 }
-.partenaires img:hover { filter: none; opacity: 1; }
+.partenaires img:hover { filter: none; opacity: 1; transform: scale(1.05); }
 
 /* ==========================================================================
    17. IMPLANTATIONS
    ========================================================================== */
-.implantation { border-left: 2px solid var(--rouge); padding-left: var(--espace-md); }
+.implantation {
+  border-left: 2px solid var(--rouge);
+  padding-left: var(--espace-md);
+  transition: padding-left var(--transition);
+}
+.implantation:hover { padding-left: calc(var(--espace-md) + 4px); }
 .implantation h3 { margin-bottom: var(--espace-xs); }
 
 /* ==========================================================================
    18. BANDEAU D'APPEL À L'ACTION
    ========================================================================== */
-.cta { background: var(--encre); color: var(--blanc); padding-block: var(--espace-lg); }
+.cta {
+  background: linear-gradient(135deg, var(--encre) 0%, var(--encre-clair) 100%);
+  color: var(--blanc);
+  padding-block: var(--espace-lg);
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -5%;
+  width: 40%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(193,18,31,0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
 .cta .conteneur {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -463,22 +597,6 @@ h3 { font-size: var(--fs-h3); }
   gap: var(--espace-md);
 }
 .cta h2 { max-width: 34rem; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    19. EN-TÊTE DE PAGE INTÉRIEURE
@@ -507,12 +625,17 @@ h3 { font-size: var(--fs-h3); }
   padding: 0.45rem 1.1rem;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: border-color var(--transition), color var(--transition);
+  transition: border-color var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
-.sommaire a:hover { border-color: var(--rouge); color: var(--rouge); }
+.sommaire a:hover {
+  border-color: var(--rouge);
+  color: var(--rouge);
+  transform: translateY(-2px);
+  box-shadow: var(--ombre-xs);
+}
 
 /* ==========================================================================
-   21. LISTE À FLÈCHES — réutilisable partout
+   21. LISTE À FLÈCHES
    ========================================================================== */
 .liste-fleches { display: grid; gap: var(--espace-xs); }
 .liste-fleches li {
@@ -528,24 +651,21 @@ h3 { font-size: var(--fs-h3); }
   font-weight: 700;
 }
 
-
 /* ==========================================================================
-   22. BLOC DUO — texte + image côte à côte, réutilisable
+   22. BLOC DUO — texte + image côte à côte
    ========================================================================== */
 .bloc-duo { display: grid; gap: var(--espace-lg); align-items: center; }
 .bloc-duo img {
   width: 100%;
-  border-radius: var(--rayon);
+  border-radius: var(--rayon-lg);
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  box-shadow: var(--ombre-md);
 }
 @media (min-width: 900px) {
   .bloc-duo { grid-template-columns: 1fr 1fr; }
   .bloc-duo--inverse > *:first-child { order: 2; }
 }
-
-
-
 
 /* ==========================================================================
    23. FORMATIONS
@@ -570,7 +690,6 @@ h3 { font-size: var(--fs-h3); }
 .formation h3 { font-size: 1.05rem; }
 .formation p  { font-size: 0.95rem; }
 
-/* Échelle de niveaux */
 .echelle {
   display: flex;
   flex-wrap: wrap;
@@ -581,28 +700,19 @@ h3 { font-size: var(--fs-h3); }
 .echelle-item strong { display: block; }
 .echelle-item span { color: var(--gris-texte); font-size: 0.95rem; }
 
-
-
-
-
-
-
-
 /* ==========================================================================
    24. RÉVÉLATION AU DÉFILEMENT
-   Le masquage ne s'applique QUE si le JS a ajouté la classe .js
    ========================================================================== */
 .js .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--delai, 0ms);
 }
 .js .reveal.est-visible {
   opacity: 1;
   transform: none;
 }
-/* Respect du réglage système "réduire les animations" */
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
@@ -615,7 +725,8 @@ h3 { font-size: var(--fs-h3); }
   max-width: 380px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: var(--rayon);
+  border-radius: var(--rayon-lg);
+  box-shadow: var(--ombre-md);
 }
 .membre-nom { font-size: 1.05rem; margin-bottom: 0.15rem; }
 .badge--neutre {
@@ -633,12 +744,13 @@ h3 { font-size: var(--fs-h3); }
    26. VALEURS NUMÉROTÉES
    ========================================================================== */
 .valeur-num {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: var(--rouge);
-  opacity: 0.3;
+  opacity: 0.28;
   line-height: 1;
   margin-bottom: var(--espace-xs);
+  letter-spacing: -0.03em;
 }
 
 /* ==========================================================================
@@ -649,14 +761,10 @@ h3 { font-size: var(--fs-h3); }
 .jalon-date { color: var(--rouge); font-weight: 700; }
 .jalon p { color: var(--gris-texte); }
 
-
-
-
 /* ==========================================================================
    28. FORMULAIRE
    ========================================================================== */
 .formulaire { display: grid; gap: var(--espace-md); }
-
 .champs {
   display: grid;
   gap: var(--espace-sm);
@@ -664,10 +772,8 @@ h3 { font-size: var(--fs-h3); }
 }
 .champ { display: grid; gap: 0.35rem; }
 .champ--large { grid-column: 1 / -1; }
-
 .champ label { font-weight: 500; font-size: 0.95rem; }
 .obligatoire { color: var(--rouge); }
-
 .champ input,
 .champ select,
 .champ textarea {
@@ -689,18 +795,14 @@ h3 { font-size: var(--fs-h3); }
   box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.12);
 }
 .champ textarea { min-height: 170px; resize: vertical; }
-
 button.bouton {
   border: none;
   cursor: pointer;
   font-family: inherit;
   font-size: 1rem;
 }
-
 .mention-rgpd { font-size: 0.88rem; color: var(--gris-texte); }
 .mention-rgpd a { color: var(--rouge); text-decoration: underline; }
-
-/* Champ anti-spam : invisible à l'écran, détecté par les robots */
 .pot-de-miel { position: absolute; left: -9999px; }
 
 /* ==========================================================================
@@ -710,22 +812,294 @@ button.bouton {
 @media (min-width: 900px) {
   .contact-grille { grid-template-columns: 1.6fr 1fr; }
 }
-
 .coord-bloc { margin-bottom: var(--espace-md); }
 .coord-bloc strong { display: block; margin-bottom: 0.15rem; }
 .coord-bloc p, .coord-bloc a { color: var(--gris-texte); }
 .coord-bloc a:hover { color: var(--rouge); }
-
 .bouton--whatsapp { background: #25D366; color: #FFFFFF; }
-.bouton--whatsapp:hover { background: #1DA851; }
+.bouton--whatsapp::after { display: none; }
+.bouton--whatsapp:hover { background: #1DA851; box-shadow: 0 12px 28px rgba(37, 211, 102, 0.28); }
 
 /* ==========================================================================
    30. PAGE DE CONFIRMATION
    ========================================================================== */
-.confirmation { text-align: center; max-width: 34rem; margin-inline: auto; }
+.confirmation { text-align: center; max-width: 34rem; margin-inline: auto; padding-block: var(--espace-lg); }
 .confirmation-icone {
-  font-size: 3rem;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto var(--espace-md);
+  border-radius: 50%;
+  background: rgba(193, 18, 31, 0.1);
   color: var(--rouge);
-  line-height: 1;
-  margin-bottom: var(--espace-sm);
+  font-size: 2.4rem;
+  display: grid;
+  place-items: center;
+  animation: pop-icone 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+@keyframes pop-icone {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .confirmation-icone { animation: none; }
+}
+
+/* ==========================================================================
+   31. ÉTUDES DE CAS
+   ========================================================================== */
+.etiquettes { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: var(--espace-sm); }
+.cas-bloc { margin-top: var(--espace-sm); }
+.cas-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rouge);
+  margin-bottom: 0.15rem;
+}
+.cas-bloc p { color: var(--gris-texte); font-size: 0.95rem; }
+
+/* ==========================================================================
+   32. POSTES
+   ========================================================================== */
+.postes { display: grid; gap: var(--espace-sm); }
+.poste {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.poste:hover { border-color: var(--rouge); box-shadow: var(--ombre-sm); transform: translateY(-2px); }
+.poste-entete {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-sm);
+  justify-content: space-between;
+  align-items: baseline;
+}
+.poste-meta { color: var(--gris-texte); font-size: 0.9rem; }
+.poste p { color: var(--gris-texte); margin-top: var(--espace-xs); }
+
+/* ==========================================================================
+   33. ÉTAPES NUMÉROTÉES
+   ========================================================================== */
+.etapes { counter-reset: etape; display: grid; gap: var(--espace-md); }
+.etape { counter-increment: etape; position: relative; padding-left: 3.4rem; }
+.etape::before {
+  content: counter(etape);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--rouge);
+  color: var(--blanc);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  box-shadow: var(--ombre-rouge);
+}
+.etape h3 { margin-bottom: 0.15rem; }
+.etape p { color: var(--gris-texte); }
+.section--sombre .etape p { color: rgba(255,255,255,0.75); }
+
+/* ==========================================================================
+   34. CANDIDATURE — champ fichier
+   ========================================================================== */
+.champ-fichier {
+  border: 1.5px dashed var(--bordure);
+  border-radius: var(--rayon);
+  padding: var(--espace-md);
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition);
+}
+.champ-fichier:hover { border-color: var(--rouge); background: rgba(193,18,31,0.02); }
+.champ-fichier input { border: none; padding: 0; }
+.champ-fichier small { color: var(--gris-texte); display: block; margin-top: var(--espace-xs); }
+
+/* ==========================================================================
+   35. RESSOURCES
+   ========================================================================== */
+.ressource { display: flex; flex-direction: column; height: 100%; }
+.ressource-type {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rouge);
+  margin-bottom: var(--espace-xs);
+}
+.ressource h3 { font-size: 1.05rem; margin-bottom: var(--espace-xs); }
+.ressource p { color: var(--gris-texte); font-size: 0.95rem; flex-grow: 1; }
+.ressource-date { font-size: 0.85rem; color: var(--gris-texte); margin-top: var(--espace-sm); }
+
+.evenement { display: grid; grid-template-columns: auto 1fr; gap: var(--espace-md); align-items: start; }
+.evenement-date {
+  background: var(--rouge);
+  color: var(--blanc);
+  border-radius: var(--rayon);
+  padding: var(--espace-sm);
+  text-align: center;
+  min-width: 5rem;
+  box-shadow: var(--ombre-rouge);
+}
+.evenement-jour { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.evenement-mois { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.evenement-contenu h3 { margin-bottom: 0.15rem; }
+.evenement-contenu p { color: var(--gris-texte); }
+.evenement-lieu { font-size: 0.9rem; color: var(--rouge); font-weight: 500; margin-top: var(--espace-xs); }
+
+/* ==========================================================================
+   36. PAGES LÉGALES
+   ========================================================================== */
+.legal { max-width: 760px; }
+.legal h2 { margin-top: var(--espace-lg); margin-bottom: var(--espace-sm); }
+.legal h3 { margin-top: var(--espace-md); margin-bottom: var(--espace-xs); }
+.legal p, .legal li { color: var(--gris-texte); }
+.legal ul { margin-left: 1.2rem; list-style: disc; }
+.legal li { margin-bottom: 0.3rem; }
+.legal address { font-style: normal; color: var(--gris-texte); }
+.legal a { color: var(--rouge); text-decoration: underline; }
+.maj { font-size: 0.9rem; color: var(--gris-texte); margin-top: var(--espace-md); }
+.todo {
+  background: #FFF3F3;
+  color: var(--rouge);
+  border: 1px dashed var(--rouge);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   37. BULLE DE PRISE DE RENDEZ-VOUS
+   ========================================================================== */
+.rdv-bulle {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-weight: 500;
+  padding: 0.85rem 1.3rem;
+  border-radius: 999px;
+  box-shadow: var(--ombre-rouge);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  animation: pulse-bulle 2.6s ease-in-out 1s 3;
+}
+.rdv-bulle:hover { background: var(--rouge-fonce); transform: translateY(-3px) scale(1.03); }
+.rdv-bulle svg { width: 20px; height: 20px; flex-shrink: 0; }
+/* Pulsation d'appel discrète (3 fois puis stop) */
+@keyframes pulse-bulle {
+  0%, 100% { box-shadow: var(--ombre-rouge); }
+  50%      { box-shadow: 0 12px 28px rgba(193,18,31,0.24), 0 0 0 10px rgba(193,18,31,0.08); }
+}
+@media (max-width: 480px) {
+  .rdv-bulle { padding: 0.9rem; }
+  .rdv-bulle .rdv-texte { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rdv-bulle { animation: none; }
+  .rdv-bulle:hover { transform: none; }
+}
+
+/* ==========================================================================
+   38. FONDS DÉCORATIFS (n'affectent jamais la lisibilité)
+   ========================================================================== */
+.page-entete--motif {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--gris-clair) 0%, var(--gris-clair-2) 100%);
+}
+.page-entete--motif::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 85% 20%, rgba(193,18,31,0.06) 0, transparent 38%),
+    radial-gradient(circle at 15% 90%, rgba(193,18,31,0.05) 0, transparent 42%);
+  pointer-events: none;
+}
+.page-entete--motif .conteneur { position: relative; z-index: 1; }
+
+/* Section avec image de fond transparente */
+.fond-image { position: relative; overflow: hidden; }
+.fond-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--img-fond);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.08;              /* CORRIGÉ : image très effacée, texte lisible */
+  pointer-events: none;
+}
+.fond-image > * { position: relative; z-index: 1; }
+.section--sombre.fond-image::before { opacity: 0.14; }
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .fond-image::before { background-attachment: scroll; }
+}
+
+/* ==========================================================================
+   39. LIEN FICHE PDF DANS LES BLOCS FORMATION
+   ========================================================================== */
+.formation-pdf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--espace-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--rouge);
+  transition: gap var(--transition);
+}
+.formation-pdf svg { width: 16px; height: 16px; flex-shrink: 0; }  /* CORRIGÉ : 16px */
+.formation-pdf:hover { gap: 0.6rem; text-decoration: underline; }
+.carte.formation { display: flex; flex-direction: column; }
+.carte.formation .formation-pdf { margin-top: auto; padding-top: var(--espace-sm); }
+
+/* ==========================================================================
+   40. EFFETS « WOW » — apparition de page + micro-interactions
+   ========================================================================== */
+
+/* Apparition douce de tout le contenu au chargement (sobre, une seule fois) */
+.js body { opacity: 0; animation: fondu-page 0.5s ease forwards; }
+@keyframes fondu-page { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .js body { opacity: 1; animation: none; }
+}
+
+/* Barre de progression de lecture en haut de page */
+.progression-lecture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rouge), var(--rouge-clair));
+  z-index: 300;
+  transition: width 80ms linear;
+}
+
+/* Effet de « relief » au survol des cartes d'expertise avec icône */
+.carte-icone {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--rayon);
+  background: rgba(193, 18, 31, 0.08);
+  color: var(--rouge);
+  margin-bottom: var(--espace-sm);
+  transition: transform var(--transition), background var(--transition);
+}
+.carte-icone svg { width: 1.5rem; height: 1.5rem; }
+.carte:hover .carte-icone { transform: scale(1.08) rotate(-3deg); background: var(--rouge); color: var(--blanc); }

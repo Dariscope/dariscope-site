@@ -6,10 +6,21 @@
   <title>Dariscope — Actuariat, conseil et formation | Abidjan &amp; Paris</title>
   <meta name="description" content="Dariscope accompagne les entreprises dans la maîtrise de leurs risques, l'optimisation de leurs performances et la valorisation de leurs données : actuariat, data science et conseil stratégique.">
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+  <!-- Open Graph : aperçu au partage (WhatsApp, LinkedIn…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dariscope">
+  <meta property="og:title" content="Dariscope — Actuariat, conseil et formation | Abidjan &amp; Paris">
+  <meta property="og:description" content="Dariscope accompagne les entreprises dans la maîtrise de leurs risques, l'optimisation de leurs performances et la valorisation de leurs données : actuariat, data science et conseil stratégique.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:url" content="https://www.dariscope.com/index.html">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
 
-  <!-- ═══════════════ HEADER — identique sur toutes les pages ═══════════════ -->
+    <!-- ═══════════════ HEADER (identique sur toutes les pages) ═══════════════ -->
   <header class="site-header">
     <div class="conteneur">
       <a href="index.html" class="logo">
@@ -23,7 +34,7 @@
           <li><a href="expertises.html">Expertises</a></li>
           <li><a href="formations.html">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
-          <li><a href="recrutement.html">Recrutement</a></li>
+          <li><a href="ressources.html">Ressources</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -62,24 +73,24 @@
       <div class="conteneur">
         <div class="chiffres">
 
-          <div>
+          <div class="chiffre-bloc reveal">
             <div class="chiffre-valeur" data-target="50">0+</div>
-            <p class="chiffre-label">formations dispensées par an</p>
+            <p class="chiffre-label">Formations dispensées par an</p>
           </div>
 
-          <div>
+          <div class="chiffre-bloc reveal" style="--delai: 100ms">
             <div class="chiffre-valeur" data-target="2">0</div>
-            <p class="chiffre-label">implantations : Abidjan &amp; Paris</p>
+            <p class="chiffre-label">Implantations : Abidjan &amp; Paris</p>
           </div>
 
-          <div>
+          <div class="chiffre-bloc reveal" style="--delai: 200ms">
             <div class="chiffre-valeur" data-target="3">0</div>
-            <p class="chiffre-label">pôles d'expertise complémentaires</p>
+            <p class="chiffre-label">Pôles d'expertise complémentaires</p>
           </div>
 
-          <div>
-            <div class="chiffre-valeur">CIMA<br>&amp; S2</div>
-            <p class="chiffre-label">double culture réglementaire</p>
+          <div class="chiffre-bloc reveal" style="--delai: 300ms">
+            <div class="chiffre-valeur" style="font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem);">CIMA<br>&amp; Solva 2</div>
+            <p class="chiffre-label">Double culture réglementaire</p>
           </div>
 
         </div>
@@ -103,7 +114,12 @@
 
         <div class="grille grille--large">
 
-          <article class="carte">
+          <article class="carte reveal">
+            <div class="carte-icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path>
+              </svg>
+            </div>
             <h3>Actuariat &amp; conseil</h3>
             <p>
               Régie actuarielle, conception et tarification produit, suivi de portefeuille,
@@ -113,7 +129,12 @@
             <a href="expertises.html#actuariat" class="carte-lien">En savoir plus →</a>
           </article>
 
-          <article class="carte">
+          <article class="carte reveal" style="--delai: 120ms">
+            <div class="carte-icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
             <h3>Risque &amp; financement</h3>
             <p>
               Arbitrage entre rétention et transfert, études de faisabilité de captives,
@@ -123,7 +144,14 @@
             <a href="expertises.html#risque" class="carte-lien">En savoir plus →</a>
           </article>
 
-          <article class="carte">
+          <article class="carte reveal" style="--delai: 240ms">
+            <div class="carte-icone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path>
+              </svg>
+            </div>
             <h3>Data science &amp; IA</h3>
             <p>
               Valorisation de vos données : qualité et structuration, modèles prédictifs,
@@ -238,7 +266,7 @@
             comme aux praticiens.
           </p>
         </div>
-        <a href="https://www.youtube.com/watch?v=mIyqtKutdzA"
+        <a href="https://www.youtube.com/channel/UCs9xaDjZs5DNwy4tMW8qfAw"
            class="bouton bouton--ligne"
            target="_blank" rel="noopener">
           Voir les épisodes sur YouTube →
@@ -256,7 +284,7 @@
 
   </main>
 
-  <!-- ═══════════════ FOOTER — identique sur toutes les pages ═══════════════ -->
+    <!-- ═══════════════ FOOTER (identique sur toutes les pages) ═══════════════ -->
   <footer class="site-footer">
     <div class="conteneur">
       <div>
@@ -273,6 +301,7 @@
           <li><a href="expertises.html">Expertises</a></li>
           <li><a href="formations.html">Formations</a></li>
           <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="ressources.html">Ressources &amp; événements</a></li>
           <li><a href="recrutement.html">Recrutement</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -280,7 +309,7 @@
       <div>
         <h3>Suivez-nous</h3>
         <ul>
-          <li><a href="https://www.youtube.com/watch?v=mIyqtKutdzA" target="_blank" rel="noopener">YouTube — Podcast</a></li>
+          <li><a href="https://www.youtube.com/channel/UCs9xaDjZs5DNwy4tMW8qfAw" target="_blank" rel="noopener">YouTube — Podcast</a></li>
           <li><a href="https://www.linkedin.com/company/dariscope" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
@@ -297,6 +326,26 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+<!-- ═══════════════ BULLE PRISE DE RENDEZ-VOUS ═══════════════
+       ⚠ Remplace l'URL par ton vrai lien Calendly.
+  -->
+  <!-- ═══════════════ BULLE PRISE DE RENDEZ-VOUS ═══════════════
+       ⚠ Remplace l'URL par ton vrai lien Calendly.
+  -->
+  <a href="https://calendly.com/dariscope-group/"
+     class="rdv-bulle"
+     target="_blank" rel="noopener"
+     aria-label="Prendre rendez-vous avec Dariscope">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <span class="rdv-texte">Prendre rendez-vous</span>
+  </a>
+
+<script src="assets/js/main.js"></script>
 </body>
 </html>
